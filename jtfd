@@ -1,0 +1,25 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+import time
+ 
+# 初始化Selenium WebDriver
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+ 
+# 访问目标网页
+url = 'http://example.com'
+driver.get(url)
+ 
+# 等待页面加载完成
+time.sleep(5)  # 可以根据页面加载时间调整
+ 
+# 提取动态加载的内容
+items = driver.find_elements(By.CSS_SELECTOR, 'div.item')
+for item in items:
+    title = item.find_element(By.CSS_SELECTOR, 'a.title').text
+    link = item.find_element(By.CSS_SELECTOR, 'a').get_attribute('href')
+    print(f'Title: {title}, Link: {link}')
+ 
+# 关闭浏览器
+driver.quit()
