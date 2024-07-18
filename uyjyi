@@ -1,0 +1,18 @@
+import scrapy
+from example.items import ExampleItem
+ 
+class ExampleSpider(scrapy.Spider):
+    name = "example"
+    start_urls = ['http://example.com']
+ 
+    def parse(self, response):
+        for item in response.css('div.item'):
+            example_item = ExampleItem()
+            example_item['title'] = item.css('a.title::text').get()
+            example_item['link'] = item.css('a::attr(href)').get()
+            yield example_item
+class ExamplePipeline:
+    def process_item(self, item, spider):
+        # 这里可以进行数据清洗和存储
+        print(f"Title: {item['title']}, Link: {item['link']}")
+        return item
