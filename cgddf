@@ -1,0 +1,19 @@
+{
+  "usingComponents": {
+  },
+  "navigationBarTitleText": "邀请函"
+}
+page{
+font-family: Arial, Helvetica, sans-serif;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+box-sizing: border-box;
+}
+<!--index.wxml-->
+<view class="player player-{{isPlayingMusic ? 'play':'pause'}}" bindtap="play">
+<image src="/images/images/music_icon.png"/>
+<image src="/images/images/music_play.png"/>
+</view>
+
+
